@@ -105,4 +105,28 @@ Probabilistic detection and analysis of transiting exoplanets using Kepler
        probably described as some approximation of a proper mixture model
   2. Find discontinuities and add knots or just break dataset
   3. Return to set 1 and then iterate until no more discontinuities are found
+* K, looks good. But, WTF have we done?! This is clearly a horrifying
+  procedure to apply to your data!
+* It has introduced all sort of correlated noise and it might have killed some
+  of the transit signal
+* This is an example of a case where you have to be really clear about what
+  you want to *do* with the data:
+  - for finding transits in the 300k light curves with >100k samples each, you
+    want an extremely fast technique that is robust/automated and removes as
+    much contaimination as possible
+  - for studying stellar variability, you want an algorithm that only removes
+    systematic effects ... obviously much more difficult so you have to be
+    will to spend more cash
+  - for estimating the parameters of a planetary system, either mode could
+    work but if you keep the stellar variability componenet, you'll need a
+    model of the variability within your procedure and I have a feeling that
+    it'll probably look awefully similar to the one that we're using for
+    untrending anyways... so maybe you should just remove it all
+  - another option which the err-Bayesian (or whatever it is) inside of me
+    prefers would be to forward model the whole thing: the parameters in your
+    model include the knot values as well as the physical parameters and I
+    have some ideas about how to do this efficiently but I'll come to that
+    later.
+
+**Bart**
 
