@@ -30,16 +30,31 @@ Probabilistic detection and analysis of transiting exoplanets using Kepler
 
 **Why study exoplanets?**
 
+*
+
+**How do you study exoplanets?**
+
+* Radial velocities, astrometry, direct detection, transits
+* in fact most discoveries use a few of these techniques
+* the most productive method recently has been transits using Kepler and
+  that's what I'm going to talk about
+* for transit searches, you just monitor the brightness of many stars as a
+  function of time with fairly high cadence... sometimes you get lucky and a
+  planet (or system) of planets will
+
 **Kepler**
 
 * I'm not at all an expert yet
 * Some info about Kepler itself:
-  - specs
+  - earth trailing, etc.
+  - two types of cadences
   - science goals
 * I'm not going to talk a lot about the many exciting discoveries that have
   been made so far except where they tie into what I'm working on but I'll
   list a few here:
-  - blah
+  - how many candidates?
+  - how many confirmed planets?
+  - also stellar science.
 
 **A funny way of writing down the Kepler data analysis**
 
@@ -130,3 +145,10 @@ Probabilistic detection and analysis of transiting exoplanets using Kepler
 
 **Bart**
 
+* Bart is a parameter estimation part of the graphical model.
+* The setup is as follows:
+  - You have data (light curves [of different cadences], radial velocities,
+    contraints from astrometry, stellar spectra, whatever)
+  - you have parameterized prior functions on the population parameters
+  - you want the distribution of planetary/stellar parameters that are
+    consistent with the data
