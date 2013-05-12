@@ -74,3 +74,17 @@ Probabilistic detection and analysis of transiting exoplanets using Kepler
 **Untrendy**
 
 *Switch to slides*
+
+* Start by demoing untrendy on Kepler-10
+  - Kepler 10 is an older Sun-like main sequence star (Teff=5627, M=0.895,
+    R=1.056)
+* First you go and download the light curve data... the raw aperture
+  photometry looks like shit...
+* Main features of untrendy:
+  - flexible but constrained and tunable non-parametric model
+  - robust outlier (transit) rejection using IRLS
+  - automatic discontinuity detection e.g. Sudden Pixel Sensitivity Dropouts
+    (SPSDs)
+  - extremely fast, local and scalable---only marginally slower than the
+    median model
+*
