@@ -80,6 +80,13 @@ Probabilistic detection and analysis of transiting exoplanets using Kepler
     R=1.056)
 * First you go and download the light curve data... the raw aperture
   photometry looks like shit...
+* There is also a column that has been corrected for a lot of the shit... it's
+  called Pre-search Data Conditioning (PDC)... still looks a bit like shit
+* That's why we came up with our algorithm called untrendy... looks sick.
+* I'm not being totally fair... no one would actually use the PDC data, right?
+* Should at least use a median filter! This actually works really well!
+* There's a new algorithm (Stumpe+ 2012 & Smith+ 2012) that will do a much
+  better job by using statistics of nearby light curves
 * Main features of untrendy:
   - flexible but constrained and tunable non-parametric model
   - robust outlier (transit) rejection using IRLS
@@ -87,4 +94,15 @@ Probabilistic detection and analysis of transiting exoplanets using Kepler
     (SPSDs)
   - extremely fast, local and scalable---only marginally slower than the
     median model
-*
+  - might even be *more* useful than the MAP algorithm for transit searches
+    and parameter estimation problems because it actually will remove stellar
+    variability signals... clearly much worse for stellar studies
+* How does it work?
+  1. fit a cubic spline model with knots every few days to the light curve
+     using IRLS
+     - IRLS is awesome because it is an extremely robust and efficient method
+     - similar to sigma clipping but the transition is smooth... it can
+       probably described as some approximation of a proper mixture model
+  2. Find discontinuities and add knots or just break dataset
+  3. Return to set 1 and then iterate until no more discontinuities are found
+
