@@ -143,6 +143,7 @@ Probabilistic detection and analysis of transiting exoplanets using Kepler
     have some ideas about how to do this efficiently but I'll come to that
     later.
 
+
 **Bart**
 
 * Bart is a parameter estimation part of the graphical model.
@@ -152,3 +153,82 @@ Probabilistic detection and analysis of transiting exoplanets using Kepler
   - you have parameterized prior functions on the population parameters
   - you want the distribution of planetary/stellar parameters that are
     consistent with the data
+* p(model | data) --- MCMC!
+* Following the rules of math: we can invert... need likelihood function.
+
+
+**Mandel and Agol (2002)**
+
+* Transit model == M&A 02 (almost 600 citations)
+* Why is this so hard? Can solve Kepler, etc.
+* Geometry of a transit...
+* Fraction of occulted flux: lambda
+* In the case of two overlapping uniform disks, this is pretty easy... just a
+  geometric factor (I'm not really that smart so I looked up the answer on the
+  internet but it's not hard to solve).
+* What gets hard is that a star is *not* a uniformly illuminated disk:
+  limb-darkening
+* the shape of the light curve is *very* different and almost all of the
+  information in the data comes from the detailed shape of the ingress and
+  egress in the LC so you have to model it very precisely
+* It's clear from our measurements of the Sun and the shapes of light curves
+  that this effect is present and *important*
+* M&A derived "analytic" expressions for the effects of limb darkening on the
+  shape of the light curve for 2 different LD parameterizations (quadratic and
+  quartic in cos theta) --- observations of the Sun and stellar atmosphere
+  simulations say that this is a pretty reasonable form
+* There are two main problems with this (not particularly serious but I need
+  to come up with problems so that I have a job)
+  1. we can really only measure the LDP of the Sun...
+  2. the analytic form requires computing all sorts of special functions
+     numerically which isn't actually particularly efficient... there might be
+     smarter ways to do it but when I benchmark the method that I'm going to
+     describe against the M&A code (both written in basic Fortran) my general
+     model is just as efficient to compute!
+
+
+**The Bart idea**
+
+* Ridiculously dumbass but awesome.
+* A little story: when I started working on this stuff, I tried to reproduce
+  the M&A results and got pretty frustrated cause I tend to never trust other
+  peoples' code. I wrote a test that checked the M&A method against a
+  numerically integrated solution and quickly discovered that the numerical
+  solution was just as fast! So that's what we decided to use
+* The fraction of occulted flux is computed by the area integral...
+* Computational complexity scales linearly with the number of bins with a
+  small multiplier so you can easily have a fairly large number of bins with
+  an arbitrary model
+* I think that this is interesting for several reasons:
+  1. the basic engineering point that sometimes it's reasonable to use the
+     simplest idea
+  2. it gives you an easy way of modeling and potentially discovering
+     departures from the standard limb darkening model
+  3. it might provide a way to *measure* the limb darkening profiles of stars
+     using multiple planet systems
+* So this exists: this part of Bart is a stand alone Fortran library that
+  takes in a set of planetary and stellar parameters and returns a model light
+  curve and radial velocities. It's pretty sweet.
+
+
+**What else is Bart?**
+
+* Bart isn't just this novel likelihood function... it also has a full suite
+  of Python tools for working with the data.
+* In particular, it has an expressive model building syntax and it interfaces
+  directly with the standard Python optimization libraries and emcee (my MCMC
+  sampler).
+* I won't get into the details of everything that exists because it would be
+  terribly boring but I do want to comment on the fact that I've been working
+  a lot on documentation and testing so things are pretty robust and easy to
+  use.
+
+
+**Bart demo**
+
+
+
+
+
+
+
