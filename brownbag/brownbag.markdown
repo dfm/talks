@@ -6,6 +6,13 @@ Brownbag
 Probabilistic detection and analysis of transiting exoplanets using Kepler
 --------------------------------------------------------------------------
 
+**Intro**
+
+* I'm going to start things off with a downer: I'm going to mostly talk about
+  the things that I've been working on for the past few months so I
+  unfortunately don't have any exiting new scientific results to report
+
+
 **About Me**
 
 * I've worked on lots of things:
@@ -19,18 +26,23 @@ Probabilistic detection and analysis of transiting exoplanets using Kepler
   engineering projects
 * Also involved and interested in the open source world
 
+
 **emcee**
 
 * My most successful project to date:
   - ~50 citations in the past 15 months
   - active community online
   - led to exciting collaborations and talk invitations
+* The reason why this was so successful (besides the fact that Hogg's name was
+  second on the author list)? Great documentation.
 * Maybe a brief explanation of the algorithm and the interface because it is
   doubly relevant
+
 
 **Why study exoplanets?**
 
 *
+
 
 **How do you study exoplanets?**
 
@@ -40,21 +52,37 @@ Probabilistic detection and analysis of transiting exoplanets using Kepler
   that's what I'm going to talk about
 * for transit searches, you just monitor the brightness of many stars as a
   function of time with fairly high cadence... sometimes you get lucky and a
-  planet (or system) of planets will
+  planet (or system) of planets will line up with your line of sight and
+  you'll see a dip in the brightness of the star
+* You get a lot of information about the system from the detailed shape of
+  this brightness variation.
+
 
 **Kepler**
 
 * I'm not at all an expert yet
 * Some info about Kepler itself:
-  - earth trailing, etc.
+  - earth trailing
+  - 115 sq degree field-of-view w few 100k targets in field
   - two types of cadences
-  - science goals
+  - science goals:
+    1. Determine the abundance of terrestrial and larger planets in or near
+       the habitable zone of a wide variety of stars;
+    2. Determine the distribution of sizes and shapes of the orbits of these
+       planets;
+    3. Estimate how many planets there are in multiple-star systems;
+    4. Determine the variety of orbit sizes and planet reflectivities, sizes,
+       masses and densities of short-period giant planets;
+    5. Identify additional members of each discovered planetary system using
+       other techniques; and
+    6. Determine the properties of those stars that harbor planetary systems.
 * I'm not going to talk a lot about the many exciting discoveries that have
   been made so far except where they tie into what I'm working on but I'll
   list a few here:
-  - how many candidates?
-  - how many confirmed planets?
+  - how many candidates? 3541
+  - how many confirmed planets? 127
   - also stellar science.
+
 
 **A funny way of writing down the Kepler data analysis**
 
@@ -78,6 +106,7 @@ Probabilistic detection and analysis of transiting exoplanets using Kepler
 * I like to argue that many of the Kepler science goals can be written down in
   this form
 
+
 **My project**
 
 * I've been working on a few components of this model and I'm going to talk
@@ -85,6 +114,7 @@ Probabilistic detection and analysis of transiting exoplanets using Kepler
   - *Untrendy*: a horrifying hack for removing systematic trends in the data
   - *Bart*: an efficient and flexible inference engine for doing the required
     internal marginalizations
+
 
 **Untrendy**
 
@@ -225,6 +255,8 @@ Probabilistic detection and analysis of transiting exoplanets using Kepler
 
 
 **Bart demo**
+
+
 
 
 
